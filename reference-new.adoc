@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: reference-new.html 
+keywords: 'what"s new, new, features, release notes, enhancements' 
+summary: Cloud Volumes ONTAP 9.8 incluye varias funciones y mejoras nuevas. 
+---
+= Novedades de Cloud Volumes ONTAP 9.8
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Volumes ONTAP 9.8 incluye varias funciones y mejoras nuevas.
+
+Las últimas versiones de BlueXP también incluyen funciones y mejoras adicionales. Consulte https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["Notas de la versión de BlueXP"^] para obtener más detalles.
+
+
+
+== Ya no se admiten las instancias c4, m4 y r4 (28 de octubre de 2022)
+
+En AWS, los tipos de instancias c4, m4 y r4 EC2 ya no son compatibles con Cloud Volumes ONTAP. Si tiene un sistema existente que se ejecuta en un tipo de instancia c4, m4 o r4, debe cambiar a un tipo de instancia en la familia de instancias c5, m5 o r5.
+
+link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-change-ec2-instance.html["Aprenda a cambiar el tipo de instancia de EC2 para Cloud Volumes ONTAP"^].
+
+Consulte link:https://mysupport.netapp.com/info/communications/ECMLP2880231.html["Soporte de NetApp"^] para obtener más información acerca del fin de la disponibilidad y la compatibilidad con estos tipos de instancia.
+
+
+
+== 9.8 GA (5 de enero de 2021)
+
+Ya está disponible la versión General Availability (GA) de Cloud Volumes ONTAP 9.8. La versión de GA incluye correcciones de errores. BlueXP le solicitará que actualice los sistemas 9.8 RC1 y 9.7 existentes a esta versión.
+
+
+
+== Cambios introducidos con el conector 3.9.2 (4 de enero de 2021)
+
+La versión 3.9.2 del conector BlueXP incluye varias mejoras para Cloud Volumes ONTAP, incluida la compatibilidad con entradas externas de AWS, discos más grandes en Google Cloud y mucho más.
+
+Vaya a la https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["Notas de la versión de BlueXP"^] para obtener más información sobre la versión 3.9.2.
+
+
+
+== Ahora se admite E48s_v3 con pares de alta disponibilidad (21 dic. 2020)
+
+El tipo de máquina virtual E48s_v3 ahora es compatible con los pares de alta disponibilidad Cloud Volumes ONTAP en Microsoft Azure.
+
+
+
+== Instancias de EC2 compatibles (11 de diciembre de 2020)
+
+A partir de la versión 9.8, los tipos de instancias EC2 c4, m4 y r4 no son compatibles con los nuevos sistemas Cloud Volumes ONTAP. Tampoco se admite el cambio de un sistema 9.8 existente a uno de estos tipos de instancia.
+
+Si ya tiene un sistema Cloud Volumes ONTAP 9.7 que se ejecuta en un tipo de instancia c4, m4 o r4, puede actualizar a la versión 9.8.
+
+
+
+== 9.8 actualización de RC1 (12 de noviembre de 2020)
+
+Al igual que los sistemas de un solo nodo, BlueXP asigna ahora un disco principal a las nuevas puestas en marcha de pares de alta disponibilidad 9.8 en AWS cuando utiliza un tipo de instancia C5, M5 o R5. El disco principal amplía la capacidad de cambiar entre tipos de instancias compatibles, mejora la capacidad del sistema para recopilar archivos principales cuando se producen problemas y proporciona la capacidad de admitir tipos de instancias más grandes en el futuro.
+
+El disco principal es un SSD de uso general (gp2) con 540 GIB.
+
+
+NOTE: Con la adición de este disco principal, ahora se admite un disco de datos menos en sistemas que utilizan estos tipos de instancia. link:reference-limits-aws.html["Más información acerca de los límites de almacenamiento en AWS"].
+
+
+
+== 9.8 RC1 (8 de noviembre de 2020)
+
+Cloud Volumes ONTAP 9.8 RC1 ya está disponible en AWS, Azure y Google Cloud Platform. En Azure, 9.8 RC1 solo está disponible para actualizaciones en este momento.
+
+Además de las funciones incluidas con https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP 9.8"^], Esta versión de Cloud Volumes ONTAP incluye lo siguiente:
+
+* <<Pares de alta disponibilidad en Google Cloud>>
+* <<Correcciones para eventos de desconexión de NIC de Azure y eventos de mantenimiento>>
+* <<Alta velocidad de escritura con pares de alta disponibilidad en AWS y Azure>>
+* <<Admite hasta 24 máquinas virtuales de almacenamiento en AWS>>
+* <<Disco de núcleo para sistemas de un solo nodo en AWS>>
+
+
+
+
+=== Pares de alta disponibilidad en Google Cloud
+
+Los pares de alta disponibilidad (ha) de Cloud Volumes ONTAP ya están disponibles en Google Cloud.
+
+Un par de alta disponibilidad proporciona fiabilidad a nivel empresarial y operaciones continuas en caso de fallos en su entorno cloud. Al igual que Cloud Volumes ONTAP en AWS, una pareja de alta disponibilidad en Google Cloud incluye dos nodos Cloud Volumes ONTAP cuyos datos se replican entre sí sincrónicamente y una instancia del mediador que proporciona un canal de comunicación para ayudar a la toma de control y la devolución del almacenamiento.
+
+Ver link:reference-configs-gcp.html["configuraciones admitidas"] y.. link:reference-limits-gcp.html["límites de almacenamiento"].
+
+https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/concept-ha-google-cloud.html["Obtenga más información sobre las parejas de ha en Google Cloud"^].
+
+
+
+=== Correcciones para eventos de desconexión de NIC de Azure y eventos de mantenimiento
+
+Esta versión proporciona varias mejoras sobre cómo Cloud Volumes ONTAP gestiona los eventos de congelación de Azure, los eventos de desvinculación de NIC de Azure y otras actividades de mantenimiento de Azure (por ejemplo, revocación de funciones virtuales). Cloud Volumes ONTAP tiene más tolerancia a fallos en esta versión y tratará los eventos de Azure con mayor dignidad, con una menor probabilidad de interrupción del servicio o de degradación del clúster.
+
+
+
+=== Alta velocidad de escritura con pares de alta disponibilidad en AWS y Azure
+
+Cloud Volumes ONTAP ahora admite una alta velocidad de escritura con parejas de alta disponibilidad en AWS y Azure cuando se utiliza una instancia o un tipo de máquina virtual específico. La alta velocidad de escritura es una buena opción si es necesario un rendimiento de escritura rápido para su carga de trabajo, y puede resistir el riesgo de pérdida de datos en caso de una interrupción del servicio del sistema no planificada.
+
+Antes de elegir una velocidad de escritura, debe comprender las diferencias entre la configuración normal y la configuración alta y los riesgos y recomendaciones cuando se utiliza alta velocidad de escritura.
+
+https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/concept-write-speed.html["Leer más"^].
+
+
+
+=== Admite hasta 24 máquinas virtuales de almacenamiento en AWS
+
+Ahora Cloud Volumes ONTAP admite hasta 24 equipos virtuales de almacenamiento en AWS cuando utiliza un tipo de instancia C5, M5 o R5 y aporta su propia licencia. De esos 24 equipos virtuales de almacenamiento, es posible configurar hasta 12 para la recuperación ante desastres.
+
+El límite puede ser inferior, según el tipo de instancia de EC2 que se utilice.
+
+Se necesita una licencia complementaria para cada equipo virtual adicional de almacenamiento que ofrece servicio de datos más allá del primer equipo virtual de almacenamiento que viene con Cloud Volumes ONTAP de forma predeterminada. Póngase en contacto con el equipo de cuenta para obtener una licencia adicional SVM.
+
+Los equipos virtuales de almacenamiento que configure para la recuperación ante desastres (DR) no requieren una licencia adicional (son gratuitos), sino que cuentan con el límite de equipos virtuales de almacenamiento.
+
+link:reference-limits-aws.html["Más información acerca de los límites de almacenamiento de equipos virtuales"].
+
+https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-managing-svms-aws.html["Descubra cómo crear máquinas virtuales de almacenamiento de servicios de datos para Cloud Volumes ONTAP en AWS"^].
+
+
+
+=== Disco de núcleo para sistemas de un solo nodo en AWS
+
+BlueXP asigna ahora un disco principal a las nuevas puestas en marcha de nodo único de 9.8 en AWS cuando se utiliza un tipo de instancia C5, M5 o R5. El disco principal amplía la capacidad de cambiar entre tipos de instancias compatibles, mejora la capacidad del sistema para recopilar archivos principales cuando se producen problemas y proporciona la capacidad de admitir tipos de instancias más grandes en el futuro.
+
+El disco principal es un SSD de uso general (gp2) con 540 GIB.
+
+
+NOTE: Con la adición de este disco de núcleo, ahora se admite un disco de datos menos en los sistemas de un solo nodo que utilizan estos tipos de instancia. link:reference-limits-aws.html["Más información acerca de los límites de almacenamiento en AWS"].
+
+
+
+== Versión necesaria del conector BlueXP
+
+El conector BlueXP debe estar ejecutando la versión 3.9.0 o posterior para implementar nuevos sistemas Cloud Volumes ONTAP 9.8 y actualizar los sistemas existentes a la versión 9.8.
+
+
+
+== Notas de actualización
+
+* Las actualizaciones de Cloud Volumes ONTAP deben completarse desde BlueXP. No debe actualizar Cloud Volumes ONTAP con System Manager o CLI. Hacerlo puede afectar a la estabilidad del sistema.
+* Puede actualizar a Cloud Volumes ONTAP 9.8 desde la versión 9.7. BlueXP le solicitará que actualice sus sistemas Cloud Volumes ONTAP 9.7 existentes a la versión 9.8.
++
+http://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-updating-ontap-cloud.html["Obtenga información sobre cómo actualizar cuando BlueXP lo notifique"^].
+
+* La actualización de un único sistema de nodos desconecta el sistema hasta 25 minutos, durante los cuales se interrumpe la I/O.
+* Actualizar un par de alta disponibilidad no provoca interrupciones y la I/o se realiza de forma ininterrumpida. Durante este proceso de actualización no disruptiva, cada nodo se actualiza conjuntamente para seguir proporcionando I/o a los clientes.
+
